@@ -28,12 +28,6 @@ def load_processed_emails(processed_emails_file):
             return json.load(file)
     except FileNotFoundError:
         return []
-#
-# def calculate_days_since(date_str):
-#     date_format = "%a, %d %b %Y %H:%M:%S %z"
-#     application_date = datetime.strptime(date_str, date_format)
-#     now_utc = datetime.now(pytz.utc)
-#     return (now_utc - application_date).days
 
 def main():
     creds_manager = CredentialsManager()
@@ -47,7 +41,7 @@ def main():
 
 # Fetch the current data from the sheet to determine where to start appending
     current_data = sheet_manager.read_sheet("Sheet1!A2:F")
-    last_row = len(current_data) + 2  # Assuming header is in the first row
+    last_row = len(current_data) + 2
 
     # Fetch new emails
     new_emails = gmail_manager.get_new_data()
@@ -57,8 +51,6 @@ def main():
     for email in new_emails:
         if email['id'] not in processed_emails:
             days_since = calculate_days_since(email['date'])
-            # Prepare the rest of the data as per your Google Sheet's columns
-            # Make sure the indexes align with the columns in your sheet
             email_data = [
                 email['subject'],  # Column A: Subject
                 email['date'],     # Column B: Date
