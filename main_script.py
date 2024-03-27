@@ -28,15 +28,6 @@ def load_processed_emails(processed_emails_file):
             return json.load(file)
     except FileNotFoundError:
         return []
-<<<<<<< HEAD
-=======
-#
-# def calculate_days_since(date_str):
-#     date_format = "%a, %d %b %Y %H:%M:%S %z"
-#     application_date = datetime.strptime(date_str, date_format)
-#     now_utc = datetime.now(pytz.utc)
-#     return (now_utc - application_date).days
->>>>>>> d948ad2 (updating files)
 
 def main():
     creds_manager = CredentialsManager()
