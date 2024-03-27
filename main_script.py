@@ -8,7 +8,6 @@ import json
 from datetime import datetime
 from dateutil import parser
 from dateutil.tz import tzutc
-import pytz
 
 
 def calculate_days_since(date_str):
@@ -44,11 +43,6 @@ def main():
 
 # Fetch the current data from the sheet to determine where to start appending
     current_data = sheet_manager.read_sheet("Sheet1!A2:F")
-<<<<<<< HEAD
-    last_row = len(current_data) + 2
-=======
-    last_row = len(current_data) + 2  # Assuming header is in the first row
->>>>>>> d948ad2 (updating files)
 
     # Fetch new emails
     new_emails = gmail_manager.get_new_data()
@@ -58,11 +52,7 @@ def main():
     for email in new_emails:
         if email['id'] not in processed_emails:
             days_since = calculate_days_since(email['date'])
-<<<<<<< HEAD
-=======
-            # Prepare the rest of the data as per your Google Sheet's columns
-            # Make sure the indexes align with the columns in your sheet
->>>>>>> d948ad2 (updating files)
+            last_row = len(current_data) + 2
             email_data = [
                 email['subject'],  # Column A: Subject
                 email['date'],     # Column B: Date
