@@ -40,7 +40,10 @@ def load_processed_emails(processed_emails_file):
 
 def main():
     creds_manager = CredentialsManager()
-    creds = creds_manager.get_credentials()
+    creds = creds_manager.get_credentials(os.getenv('GOOGLE_CREDENTIALS_PATH'))
+    
+    processed_emails_file = os.getenv('PROCESSED_EMAILS_PATH')
+    processed_emails = load_processed_emails(processed_emails_file)
 
     sheet_manager = GoogleSheetManager(creds, os.getenv('GOOGLE_SHEET_ID'))
     gmail_manager = GmailManager(creds)

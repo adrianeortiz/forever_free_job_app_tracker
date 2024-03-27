@@ -9,7 +9,7 @@ class CredentialsManager:
                        'https://www.googleapis.com/auth/gmail.readonly']
         self.creds = None
 
-    def get_credentials(self):
+    def get_credentials(self, getenv):
         if not self.creds or not self.creds.valid:
             self.creds = InstalledAppFlow.from_client_secrets_file(
                 self.creds_path, self.scopes).run_local_server(port=8080)
